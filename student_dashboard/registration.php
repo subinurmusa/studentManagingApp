@@ -35,6 +35,8 @@ if (isset($_POST["submit"])) {
             if ($result1) {
                 // User authentication successful
                 $_SESSION["username"] = $username;
+                $_SESSION["email"] = $email;
+
                 $error = "<div class='alert alert-success'>مۇۋەپپەقىيەتلىك قىستۇرۇلدى</div>";
                 header("Location: dashboard.php"); // Redirect user to another page
     

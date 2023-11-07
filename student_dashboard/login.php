@@ -11,14 +11,16 @@ if(isset($_POST["submit"])){
     if(empty($username)|| empty($password)){
         $error="<div class='alert alert-danger'>لازىملىق جايلارنى تولدۇرۇڭ</div>";
     }else{  
-     echo $username;
-            $sql= $db->prepare("SELECT `username`, `password` FROM `registration` WHERE PASSWORD= '".md5($password)."' and username='".$username."';");
+    
+            $sql= $db->prepare("SELECT `username`, `password`,`email` FROM `registration` WHERE PASSWORD= '".md5($password)."' and username='".$username."';");
           
             $sql-> execute();  
             $result = $sql->fetch(PDO::FETCH_ASSOC);          
             if ($result) {
         // User authentication successful
         $_SESSION["username"] = $username;
+        $_SESSION["email"] = $result["email"];
+
         $error = "<div class='alert alert-success'>مۇۋەپپەقىيەتلىك قىستۇرۇلدى</div>";
         header("Location: dashboard.php"); // Redirect user to another page
          
